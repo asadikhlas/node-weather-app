@@ -10,12 +10,20 @@ const getNews = countryId => {
   const url = `https://newsapi.org/v2/everything?q=${countryId}?&apiKey=fec47e089e3a4635b9f0708267ce50e2`;
   request(url, (error, response, body) => {
     const info = JSON.parse(body);
-    console.log("\t \t \t \t \t" + chalk.white.bgRed.bold("News for " + countryId));
-    console.log("\n")
+    console.log(
+      "\t \t \t \t \t" + chalk.white.bgRed.bold("News for " + countryId)
+    );
+    console.log("\n");
     for (let i = 0; i <= 4; i++) {
-      console.log(chalk.white.bgCyan.bold("Author: "), chalk.blue (info.articles[i].author));
-      console.log("\n")
-      console.log(chalk.white.bgCyan.bold("Title: "), chalk.blue (info.articles[i].title));
+      console.log(
+        chalk.white.bgCyan.bold("Author: "),
+        chalk.blue(info.articles[i].author)
+      );
+      console.log("\n");
+      console.log(
+        chalk.white.bgCyan.bold("Title: "),
+        chalk.blue(info.articles[i].title)
+      );
     }
   });
 };
@@ -28,24 +36,24 @@ const getCountry = cityId => {
     console.log(
       "\t \t \t \t" + chalk.white.bgRed.bold("Your City Information")
     );
-    console.log("\n")
+    console.log("\n");
     console.log(
       chalk.white.bgCyan.bold("Country Name: "),
       chalk.blue(info.Country.LocalizedName)
     );
-    console.log("\n")
+    console.log("\n");
     console.log(
       chalk.white.bgCyan.bold("Province: "),
       chalk.blue(info.AdministrativeArea.LocalizedName)
     );
-    console.log("\n")
+    console.log("\n");
     console.log("\t \t \t \t \t" + chalk.white.bgRed.bold("GeoPosition"));
-    console.log("\n")
+    console.log("\n");
     console.log(
       chalk.white.bgCyan.bold("Latitude:"),
       chalk.blue(info.GeoPosition.Latitude)
     );
-    console.log("\n")
+    console.log("\n");
     console.log(
       chalk.white.bgCyan.bold("Longitude:"),
       chalk.blue(info.GeoPosition.Longitude)
@@ -64,7 +72,7 @@ const getWeather = cityId => {
     console.log(
       "\t \t \t \t \t" + chalk.white.bgRed.bold("Weather information")
     );
-    console.log("\n")
+    console.log("\n");
     getForecast.map(item => {
       console.log(
         chalk.white.bgCyan.bold("Minimum Temperature: "),
@@ -72,7 +80,7 @@ const getWeather = cityId => {
           item.Temperature.Minimum.Value + item.Temperature.Minimum.Unit
         )
       );
-      console.log("\n")
+      console.log("\n");
     });
     getForecast.map(item => {
       console.log(
@@ -85,13 +93,13 @@ const getWeather = cityId => {
   });
 };
 
-const gatherData = (city) => {
+const gatherData = city => {
   if (!city) {
-    console.log(chalk.white.bgRed('Finding City by your IP ...'))
-    axios.get('https://ipapi.co/json').then(res => {
+    console.log(chalk.white.bgRed("Finding City by your IP ..."));
+    axios.get("https://ipapi.co/json").then(res => {
       const a = res.data.city;
-      gatherData(a)
-    }) 
+      gatherData(a);
+    });
   } else {
     const url = `http://dataservice.accuweather.com/locations/v1/cities/search?apikey=san4GqjWsND0tGapYRWyB1knt8XtgkgP&q=${city}`;
     request(url, (err, response, body) => {
@@ -106,5 +114,5 @@ const gatherData = (city) => {
     });
   }
 };
-  
+
 gatherData(city);
