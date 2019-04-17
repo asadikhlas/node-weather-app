@@ -1,10 +1,7 @@
 const request = require("request");
 const chalk = require("chalk");
 const city = process.argv[2];
-const dns = require('dns')
-let getIp = ``
-
-// const requestIp = require('request-ip');
+const axios = require("axios");
 
 //oldKey= VMNnaA2Qh0floOQkrFA7UPC8r4yRXdS5
 //umair key= san4GqjWsND0tGapYRWyB1knt8XtgkgP
@@ -88,9 +85,13 @@ const getWeather = cityId => {
   });
 };
 
-const gatherData = (city,address, callback) => {
+const gatherData = (city) => {
   if (!city) {
     console.log(chalk.white.bgRed('Finding City by your IP ...'))
+    axios.get('https://ipapi.co/json').then(res => {
+      const a = res.data.city;
+      gatherData(a)
+    }) 
   } else {
     const url = `http://dataservice.accuweather.com/locations/v1/cities/search?apikey=san4GqjWsND0tGapYRWyB1knt8XtgkgP&q=${city}`;
     request(url, (err, response, body) => {
