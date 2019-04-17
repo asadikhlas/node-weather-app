@@ -107,6 +107,3 @@ const gatherData = (city,address, callback) => {
 };
   
 gatherData(city);
-
-
-//han dekh sai ha??
