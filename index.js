@@ -105,7 +105,7 @@ const gatherData = (city,address, callback) => {
     });
   }
 };
- 
+  
 gatherData(city);
 
 
