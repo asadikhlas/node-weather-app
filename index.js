@@ -52,7 +52,7 @@ const getCountry = cityId => {
     console.log(
       chalk.white.bgCyan.bold("Latitude:"),
       chalk.blue(info.GeoPosition.Latitude)
-    );
+    ); 
     console.log("\n");
     console.log(
       chalk.white.bgCyan.bold("Longitude:"),
