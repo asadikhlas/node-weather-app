@@ -1,7 +1,8 @@
 const request = require("request");
 const chalk = require("chalk");
 const city = process.argv[2];
-// const dns = require('dns')
+const dns = require('dns')
+let getIp = ``
 
 // const requestIp = require('request-ip');
 
@@ -87,9 +88,16 @@ const getWeather = cityId => {
   });
 };
 
-const gatherData = city => {
+const gatherData = (city,address, callback) => {
   if (!city) {
     console.log(chalk.white.bgRed('Finding City by your IP ...'))
+    var encodeAddress = encodeURIComponent(address);
+
+    dns.lookup(getIp, (err, addresses, family) => {
+      console.log('address', addresses)
+      console.log('family', family)
+    })
+ 
 
   } else {
     const url = `http://dataservice.accuweather.com/locations/v1/cities/search?apikey=san4GqjWsND0tGapYRWyB1knt8XtgkgP&q=${city}`;
